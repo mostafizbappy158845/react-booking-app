@@ -13,7 +13,7 @@ import {
     faTaxi
 } from "@fortawesome/free-solid-svg-icons"
 
-const Header = () => {
+const Header = ({type}) => {
     const [openDate, setOpenDate] = useState(false)
     const [date, setDate] = useState([
         {
@@ -39,7 +39,8 @@ const Header = () => {
     }
     return (
         <div className='header relative bg-[#A760FF] text-white flex justify-center'>
-            <div className="headerContainer  w-full max-w-screen-lg mt-5 mb-20">
+            {/* conditon for list page & home page */}
+            <div className={type ==="list"? "headerContainer  w-full max-w-screen-lg mt-5 " : "headerContainer  w-full max-w-screen-lg mt-5 mb-20"}>
                 <div className="headerList mb-12 flex gap-10">
                     <div className="headerListItem active flex items-center gap-2.5">
                         <FontAwesomeIcon icon={faBed} />
@@ -62,7 +63,11 @@ const Header = () => {
                         <span>Airport taxis</span>
                     </div>
                 </div>
-                <h1 className="headerTitle text-3xl font-medium">A lifetime of discounts? It's Genius.</h1>
+                {/* this part will not show for list page */}
+                { type !== "list" && 
+                // here use fragmante/parent div
+                <>
+                    <h1 className="headerTitle text-3xl font-medium">A lifetime of discounts? It's Genius.</h1>
                 <p className="headerDesc my-5">Get rewarded at your travels - Unlock instant savings 10% or more with a free hotel account</p>
                 <button className='headerBtn bg-white text-[#A760FF] p-2.5 border-0 font-medium cursor-pointer'>Sign in / Register</button>
                 <div className="headerSearch h-[30px]  w-full max-w-screen-lg bg-white flex items-center justify-around py-5 rounded-md absolute bottom-[-25px]">
@@ -117,6 +122,7 @@ const Header = () => {
                         <button className='headerBtn  bg-[#A760FF] text-white p-2 border-0 font-medium cursor-pointer'>Search</button>
                     </div>
                 </div>
+                </>}
             </div>
         </div>
     );
