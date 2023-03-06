@@ -12,8 +12,10 @@ import {
     faPlane,
     faTaxi
 } from "@fortawesome/free-solid-svg-icons"
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({type}) => {
+    const [destination, setDestination] = useState('')
     const [openDate, setOpenDate] = useState(false)
     const [date, setDate] = useState([
         {
@@ -29,6 +31,8 @@ const Header = ({type}) => {
         room: 1,
     });
 
+    const navigate = useNavigate();
+
     const handleOption = (name, operation) => {
         setOptions((prev) => {
             return {
@@ -36,6 +40,9 @@ const Header = ({type}) => {
                 [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
             };
         });
+    }
+    const handleSearch = () =>{
+        navigate('/hotels',{state: {destination, date, options}});
     }
     return (
         <div className='header relative bg-[#A760FF] text-white flex justify-center'>
@@ -73,7 +80,12 @@ const Header = ({type}) => {
                 <div className="headerSearch h-[30px]  w-full max-w-screen-lg bg-white flex items-center justify-around py-5 rounded-md absolute bottom-[-25px]">
                     <div className="headerSearchItem text-gray-400 flex items-center gap-2.5">
                         <FontAwesomeIcon className='headerIcon ' icon={faBed} />
-                        <input className='headerSearchInput border-0 outline-0' type="text" placeholder='Where are you going?' />
+                        <input 
+                        className='headerSearchInput border-0 outline-0' 
+                        type="text" 
+                        placeholder='Where are you going?'
+                        onChange={(e)=> setDestination(e.target.value)}
+                         />
                     </div>
                     <div className="headerSearchItem text-gray-400 flex items-center gap-2.5">
                         <FontAwesomeIcon className='headerIcon' icon={faCalendarDays} />
@@ -84,6 +96,7 @@ const Header = ({type}) => {
                             moveRangeOnFirstSelection={false}
                             ranges={date}
                             className='date absolute top-12'
+                            minDate={new Date()}
                         />}
                     </div>
                     <div className="headerSearchItem text-gray-400 flex items-center gap-2.5">
@@ -119,7 +132,7 @@ const Header = ({type}) => {
                         }
                     </div>
                     <div className="headerSearchItem">
-                        <button className='headerBtn  bg-[#A760FF] text-white p-2 border-0 font-medium cursor-pointer'>Search</button>
+                        <button className='headerBtn  bg-[#A760FF] text-white p-2 border-0 font-medium cursor-pointer' onClick={handleSearch}>Search</button>
                     </div>
                 </div>
                 </>}
