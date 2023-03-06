@@ -1,0 +1,12 @@
+.featuredItem{
+    position: relative;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 250px;
+}
+.featuredTitles{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
