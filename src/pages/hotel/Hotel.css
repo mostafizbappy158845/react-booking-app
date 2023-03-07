@@ -29,6 +29,7 @@
   
   .hotelTitle {
     font-size: 24px;
+    font-weight: 700;
   }
   
   .hotelAddress {
@@ -91,13 +92,14 @@
   
   .hotelDetailsPrice > h1 {
     font-size: 18px;
+    font-weight: 600;
     color: #555;
   }
   .hotelDetailsPrice > span {
     font-size: 14px;
   }
   .hotelDetailsPrice > h2 {
-    font-weight: 300;
+    font-weight: 600;
   }
   .hotelDetailsPrice > button {
     border: none;
